@@ -2,7 +2,9 @@ const webpack = require('webpack');
 const path = require('path');
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+// const CopyPlugin = require('copy-webpack-plugin');
 
 // Setting internals ============================
 const internals = {
@@ -14,9 +16,9 @@ const config = {
     mode: 'production',
     entry: `${ internals.src }/js/main.js`,
     output: {
-        filename: '[name].js',
+        filename: '[name].[hash].js',
         path: path.resolve(`${__dirname}/`, 'public'),
-        publicPath:  path.resolve(`${__dirname}/`, 'public')
+        // publicPath:  path.resolve(`${__dirname}/`, 'public')
     },
     resolveLoader: {
         modules: ['node_modules']
@@ -41,10 +43,21 @@ const config = {
         ]
     },
     plugins: [
+        // new CopyPlugin([
+        //     { from: 'images/**/*' },
+        // ]),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+        new CleanWebpackPlugin({
+            cleanAfterEveryBuildPatterns: ['!images*'],
+            cleanOnceBeforeBuildPatterns: ['!images*','!**/*.svg','!**/*.png','!**/*.xml','!**/*.ico','!**/*.json','!favicon*'],
+        }),
+        new HtmlWebpackPlugin({
+            scriptLoading:'defer',
+            template: 'assets/src/html/index.html'
+        }),
         new MiniCssExtractPlugin({
-            filename: '[name].css',
-        })
+            filename: '[name].[contenthash].css',
+        }),
     ],
 };
 

@@ -42,7 +42,7 @@ class SearchBarHome extends React.Component {
             </h5>
             <div className="field">
               <div className="control has-icons-left">
-                <input className="input  is-primary is-rounded" type="text" placeholder="Arroz, Maiz, Plasticos, Pollo, Frijoles" required="required" />
+                <input className="input  is-primary is-rounded" type="text" placeholder="Arroz, frijoles, platanos &oacute; bananos el roble, pollos satelite" required="required" />
                 <span className="icon is-large is-left">
                   <i className="mdi mdi-card-search"/>
                 </span>

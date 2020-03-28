@@ -8,8 +8,8 @@ const Header = () => {
     <nav className="navbar" role="navigation" aria-label="main dropdown">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          <img src="/images/team.svg" width="55" />
-          <strong>RECA: Red Comunitaria de Abastos</strong>
+          <img src="images/team.svg" width="55" />
+          <strong>RECA: ss ss Red Comunitaria de Abastos</strong>
         </a>
       </div>
       <div className="navbar-end">

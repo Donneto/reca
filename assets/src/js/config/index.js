@@ -17,7 +17,7 @@ const internals = {
 
 // Env Check
 if( internals.env !== 'dev') {
-  internals.apiURL = 'https://acklen-coding-test.herokuapp.com';
+  internals.apiURL = 'https://reca-hn.herokuapp.com';
 }
 
 internals.init = () => {
