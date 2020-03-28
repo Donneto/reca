@@ -1,5 +1,13 @@
 import React from 'react';
 import Typewriter from 'typewriter-effect/dist/core';
+import algoliasearch from 'algoliasearch/lite';
+import config from 'react-global-configuration';
+
+const internals = {
+  client: algoliasearch(config.get('app.searchAppID'), config.get('app.searchKey'))
+};
+
+internals.algolia = internals.client.initIndex('reca_prod');
 
 class SearchBarHome extends React.Component {
   constructor(props) {
@@ -8,6 +16,7 @@ class SearchBarHome extends React.Component {
     this.state = {};
 
     this.initTypeWriter = this.initTypeWriter.bind(this);
+    this._handleSearch = this._handleSearch.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +34,14 @@ class SearchBarHome extends React.Component {
     });
 
     tw.start();
+  }
+
+  _handleSearch(e) {
+    e.preventDefault();
+
+    internals.algolia.search('coca').then(({ hits }) => {
+      console.log(hits);
+    });
   }
 
   render() {
@@ -56,7 +73,7 @@ class SearchBarHome extends React.Component {
             </div>
             <br/>
             <div className="has-text-centered">
-              <button className="button  is-primary is-medium">
+              <button className="button  is-primary is-medium" onClick={ e => this._handleSearch(e)}>
                 <span className="icon">
                   <i className="mdi mdi-magnify" />
                 </span>

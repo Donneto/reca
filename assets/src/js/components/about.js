@@ -23,7 +23,7 @@ const About = () => {
             <div className="card-content">
               <h4 className="title is-4">Acerca del Proyecto</h4>
               <hr/>
-              <p>Considerando el momento tan dif&iacute;cil que se afronta a nivel mundial hemos tomado la iniciativa de poner a tu disposicion un servicio que te ayude a a encontrar los productos que mas necesites sin poner en riesgo tu seguridad y la de tu familia.<br/><br/>
+              <p>Considerando el momento tan dif&iacute;cil que se afronta a nivel mundial hemos tomado la iniciativa de poner a tu disposicion un servicio que te ayude a encontrar los productos que mas necesites sin poner en riesgo tu seguridad y la de tu familia.<br/><br/>
                 <b>Sumate! Haz tu parte. Quedate en casa. <a href="https://twitter.com/hashtag/CODVID19" target="_blank">#CODVID19</a></b>
               </p>
             </div>

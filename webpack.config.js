@@ -48,8 +48,8 @@ const config = {
         // ]),
         new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
         new CleanWebpackPlugin({
-            cleanAfterEveryBuildPatterns: ['!images*'],
-            cleanOnceBeforeBuildPatterns: ['!images*','!**/*.svg','!**/*.png','!**/*.xml','!**/*.ico','!**/*.json','!favicon*'],
+            cleanAfterEveryBuildPatterns: ['!images*','!**/*.svg','!**/*.png','!**/*.xml','!**/*.ico','!**/*.json','!**/favicon*'],
+            cleanOnceBeforeBuildPatterns: ['**/*','!images*','!**/*.svg','!**/*.png','!**/*.xml','!**/*.ico','!**/*.json','!**/favicon*'],
         }),
         new HtmlWebpackPlugin({
             scriptLoading:'defer',
