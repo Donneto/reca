@@ -1,0 +1,10 @@
+$table-cell-padding : .3em .3em;
+
+.bulma-picker {
+    font-size: 12px;
+}
+
+.control.has-icons-left .icon,
+.control.has-icons-right .icon {
+    z-index: 0;
+}
