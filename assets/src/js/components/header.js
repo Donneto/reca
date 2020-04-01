@@ -7,10 +7,10 @@ const Header = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main dropdown">
       <div className="navbar-brand">
-        <a className="navbar-item" href="/">
+        <Link className="navbar-item" to="/">
           <img src="images/team.svg" width="55" />
           <strong>RECA: Red Comunitaria de Abastos</strong>
-        </a>
+        </Link>
       </div>
       <div className="navbar-end">
         <div className="navbar-item">

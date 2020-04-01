@@ -2,7 +2,7 @@
 import React from 'react';
 
 const Footer = () => {
-  // Made with <span className="icon has-text-danger"><i className="mdi mdi-cards-heart"/></span>by <a href="https://github.com/donneto" target="_blank">Adolfo Gutierrez</a>
+
   return(
     <footer className="footer has-text-centered">
       <div className="content has-text-centered">

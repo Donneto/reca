@@ -3,7 +3,7 @@ import React from 'react';
 // import config from 'react-global-configuration';
 
 // Custom
-import SearchBarHome from '../components/searchBarHome';
+import SearchBar from '../components/searchBar';
 import About from '../components/about';
 
 class Home extends React.Component {
@@ -16,8 +16,8 @@ class Home extends React.Component {
   render() {
 
     return(
-      <div className="home-view">
-        <SearchBarHome />
+      <div className="home">
+        <SearchBar view="home"/>
         <About/>
       </div>
     );

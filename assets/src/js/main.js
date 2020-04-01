@@ -8,7 +8,7 @@ import './config';
 // custom
 import Router from './components/router';
 
-class Expenses extends React.Component {
+class Reca extends React.Component {
 
   render() {
 
@@ -18,4 +18,4 @@ class Expenses extends React.Component {
   }
 }
 
-render(<Expenses />, document.getElementById('app'));
+render(<Reca />, document.getElementById('app'));

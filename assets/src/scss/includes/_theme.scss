@@ -1,4 +1,16 @@
+@import 'animations';
+
 $table-cell-padding : .3em .3em;
+$hr-margin: 1rem 0;
+$hr-background-color: #eaeaea;
+$card-content-padding: 1rem;
+$footer-background-color: white;
+$hero-body-padding: 3rem 0;
+
+.card {
+    border-radius: 10px;
+    margin: 1.5rem 0;
+}
 
 .bulma-picker {
     font-size: 12px;
