@@ -5,6 +5,7 @@ import TimePicker from 'rc-time-picker';
 import moment from 'moment';
 import Spinner from './spinner';
 import axios from 'axios';
+import Tag from './tag';
 
 const internals = {
   nombre: '',
@@ -34,7 +35,8 @@ class RegistrationForm extends React.Component {
     this.state = {
       errors: [],
       loading: false,
-      showSuccessModal: false
+      showSuccessModal: false,
+      tags: []
     };
 
     this._handleGlobalTimeEventChange = this._handleGlobalTimeEventChange.bind(this);
@@ -43,10 +45,47 @@ class RegistrationForm extends React.Component {
     this._handleLoading = this._handleLoading.bind(this);
     this._handleShowSuccessModal = this._handleShowSuccessModal.bind(this);
     this._handleCloseSuccessModal = this._handleCloseSuccessModal.bind(this);
+    this._handleDeleteTag = this._handleDeleteTag.bind(this);
+    this._handleTagInputChange = this._handleTagInputChange.bind(this);
   }
 
   _handleInputChange(e) {
     internals[e.target.name] = e.target.value;
+  }
+
+  _handleTagInputChange(e) {
+    if (e.keyCode === 13) {
+      this._handleTagAdd(e);
+    }
+
+    internals[e.target.name] = e.target.value;
+  }
+
+  _handleTagAdd(e) {
+    e.preventDefault();
+
+    const criteria = internals.productos.trim().toLowerCase().split(',')[0];
+    const tags = this.state.tags;
+    const found = tags.indexOf(criteria);
+
+    if (!criteria || !criteria.length) {
+
+      return;
+    }
+
+    // If not found add it
+    if (found === -1) {
+      tags.push(criteria);
+      this.setState({ tags });
+      internals.tags = tags;
+    }
+  }
+
+  _handleDeleteTag(e, tag) {
+    e.preventDefault();
+    internals.tags = internals.tags.filter( currentTag => currentTag !== tag);
+
+    this.setState({tags: internals.tags});
   }
 
   _handleCloseSuccessModal(e) {
@@ -334,13 +373,24 @@ class RegistrationForm extends React.Component {
                     <div className="field is-expanded">
                       <div className="field has-addons">
                         <div className="control has-icons-left is-expanded">
-                          <input className="input" name="productos" type="text" placeholder="ejem.: maiz, frescos, coca cola, frijoles" required="required" onChange={e => this._handleInputChange(e) }/>
+                          <input className="input" name="productos" type="text" placeholder="ejem.: maiz, frescos, coca cola, frijoles" required="required" onChange={e => this._handleTagInputChange(e) }/>
                           <span className="icon is-left">
                             <i className="mdi mdi-cart" />
                           </span>
                         </div>
+                        <div className="control"><button className="button is-primary" onClick={ e => this._handleTagAdd(e) }><span className="icon"><i className="mdi mdi-plus" /></span></button></div>
                       </div>
-                      <p className="help"><b>Lista de tu productos mas relevantes separados por comas. Ejem.: arroz, coca cola, frijoles, verduras, bananos, sandias</b></p>
+                      <p className="help"><b>Agregue un producto / servicio. </b></p>
+                    </div>
+                  </div>
+                </div>
+                <div className="field is-horizontal">
+                  <div className="field-label is-normal" />
+                  <div className="field-body">
+                    <div className="field">
+                      <div className="buttons">
+                        {this.state.tags.length > 0 && this.state.tags.map( tag => <Tag key={tag} tag={tag} deleteTag={this._handleDeleteTag} />)}
+                      </div>
                     </div>
                   </div>
                 </div>
