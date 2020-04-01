@@ -18,6 +18,7 @@ const internals = {
   domicilio: 'si',
   horario: 'Lunes-Viernes',
   productos: '',
+  website: '',
   tags: [],
   activo: true,
   revisado: true,
@@ -187,14 +188,14 @@ class RegistrationForm extends React.Component {
           <div className="columns is-centered">
             <div className="column is-two-thirds">
               <form onSubmit={(e) => this._handleFormSubmit(e)}>
-                <h3 className="title is-3">¡Registr&aacute; tu negocio!</h3>
-                <p>Ayud&aacute; a tu comunidad a combatir el <b>COVID-19</b> haciendoles saber como contactarte y cuales son tus principales insumos para la venta.</p>
+                <h3 className="title is-3">¡Registr&aacute; tu negocio &oacute; Servicio!</h3>
+                <p>Ayud&aacute; a tu comunidad a combatir el <b>COVID-19</b> haciendoles saber como contactarte y que tienes para ofrecer.</p>
                 <hr/>
                 <small className="has-text-danger">(*) campo requerido</small>
                 <hr/>
                 <div className="field is-horizontal">
                   <div className="field-label is-normal">
-                    <label className="label"><sup>*</sup>Nombre:</label>
+                    <label className="label"><sup className="has-text-danger">*</sup>Nombre:</label>
                   </div>
                   <div className="field-body">
                     <div className="field">
@@ -209,7 +210,7 @@ class RegistrationForm extends React.Component {
                 </div>
                 <div className="field is-horizontal">
                   <div className="field-label is-normal">
-                    <label className="label"><sup>*</sup>Email:</label>
+                    <label className="label"><sup className="has-text-danger">*</sup>Email:</label>
                   </div>
                   <div className="field-body">
                     <div className="field is-expanded">
@@ -227,12 +228,27 @@ class RegistrationForm extends React.Component {
                 </div>
                 <div className="field is-horizontal">
                   <div className="field-label is-normal">
-                    <label className="label"><sup>*</sup>Tel&eacute;fono(s):</label>
+                    <label className="label"><sup className="has-text-danger">*</sup>Tel&eacute;fono(s):</label>
                   </div>
                   <div className="field-body">
                     <div className="field">
                       <div className="control has-icons-left">
                         <input className="input" type="text" name="telefono" placeholder="1234-5678 &oacute; 1234-5678/0987-6543 &oacute; *2222 " required="required" onChange={e => this._handleInputChange(e) }/>
+                        <span className="icon is-left">
+                          <i className="mdi mdi-phone"/>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="field is-horizontal">
+                  <div className="field-label is-normal">
+                    <label className="label">Website:</label>
+                  </div>
+                  <div className="field-body">
+                    <div className="field">
+                      <div className="control has-icons-left">
+                        <input className="input" type="text" name="website" placeholder="www.tuwebsite.com" onChange={e => this._handleInputChange(e) }/>
                         <span className="icon is-left">
                           <i className="mdi mdi-phone"/>
                         </span>
@@ -257,7 +273,7 @@ class RegistrationForm extends React.Component {
                 </div>
                 <div className="field is-horizontal">
                   <div className="field-label is-normal">
-                    <label className="label"><sup>*</sup>Ciudad:</label>
+                    <label className="label"><sup className="has-text-danger">*</sup>Ciudad:</label>
                   </div>
                   <div className="field-body">
                     <div className="field is-narrow">
@@ -275,7 +291,7 @@ class RegistrationForm extends React.Component {
                 </div>
                 <div className="field is-horizontal">
                   <div className="field-label is-normal">
-                    <label className="label"><sup>*</sup>Direcci&oacute;n:</label>
+                    <label className="label"><sup className="has-text-danger">*</sup>Direcci&oacute;n:</label>
                   </div>
                   <div className="field-body">
                     <div className="field">
@@ -367,7 +383,7 @@ class RegistrationForm extends React.Component {
                 <hr/>
                 <div className="field is-horizontal">
                   <div className="field-label is-normal">
-                    <label className="label"><sup>*</sup>Productos o Servicios:</label>
+                    <label className="label"><sup className="has-text-danger">*</sup>Productos o Servicios:</label>
                   </div>
                   <div className="field-body">
                     <div className="field is-expanded">
@@ -378,9 +394,9 @@ class RegistrationForm extends React.Component {
                             <i className="mdi mdi-cart" />
                           </span>
                         </div>
-                        <div className="control"><button className="button is-primary" onClick={ e => this._handleTagAdd(e) }><span className="icon"><i className="mdi mdi-plus" /></span></button></div>
+                        <div className="control"><button className="button is-primary" onClick={ e => this._handleTagAdd(e) }><span className="icon"><i className="mdi mdi-plus" /></span><span>Agregar</span> </button></div>
                       </div>
-                      <p className="help"><b>Agregue un producto / servicio. </b></p>
+                      <p className="help"><b>Agrega varios productos/servicios con los que cuentes o palabras que describan tu negocio. Ejemplos: Servicios Medicos, Minisuper, Frutas, bananos, pulperia, Nebulizaciones, Toma de la presion,san pedro sula, Carpinteria, Fotografia.   </b></p>
                     </div>
                   </div>
                 </div>

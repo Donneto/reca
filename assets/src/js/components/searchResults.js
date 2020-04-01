@@ -44,7 +44,7 @@ class SearchResultsComponent extends React.Component {
             <p className="has-text-centered"><b>Servicios &oacute; Productos encontrados: {data.length}</b></p>
             {data.map( negocio => <Item key={negocio.objectID} item={negocio}/>)}
             {data.length === 0 && <div className="card">
-              <div className="card-content"><p className="title is-4 has-text-centered">No se encontraron negocios</p></div>
+              <div className="card-content"><p className="title is-4 has-text-centered">No se encontraron Negocios &oacute; Servicios</p></div>
             </div> }
             <p className="has-text-centered"><img src="/images/team.svg" width="65"/></p>
           </div>
