@@ -10,6 +10,7 @@ import {
 import Home from '../views/home';
 import Registration from '../views/registration';
 import SearchResults from '../views/searchResults';
+import EditInformation from '../views/EditInformation';
 import Footer from './footer';
 import Header from './header';
 
@@ -23,6 +24,9 @@ const appRouter = () => {
         </Route>
         <Route path="/resultados">
           <SearchResults date={new Date()}/>
+        </Route>
+        <Route path="/editar-informacion">
+          <EditInformation />
         </Route>
         <Route path="/">
           <Home />
