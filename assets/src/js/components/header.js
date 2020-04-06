@@ -19,10 +19,10 @@ const Header = () => {
               <span className="icon"><i className="mdi mdi-account-badge-horizontal" /></span>
               <strong>Registra tu Negocio</strong>
             </Link>
-            <a className="button is-warning is-small">
+            <Link className="button is-warning is-small" to="/editar-informacion">
               <span className="icon"><i className="mdi mdi-file-document-edit" /></span>
               <strong>Edita tus Datos</strong>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

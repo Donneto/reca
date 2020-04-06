@@ -183,283 +183,285 @@ class RegistrationForm extends React.Component {
 
   render() {
     return (
-      <section className="section">
-        <div className="container row">
-          <div className="columns is-centered">
-            <div className="column is-two-thirds">
-              <form onSubmit={(e) => this._handleFormSubmit(e)}>
-                <h3 className="title is-3">¡Registr&aacute; tu negocio &oacute; Servicio!</h3>
-                <p>Ayud&aacute; a tu comunidad a combatir el <b>COVID-19</b> haciendoles saber como contactarte y que tienes para ofrecer.</p>
-                <hr/>
-                <small className="has-text-danger">(*) campo requerido</small>
-                <hr/>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label"><sup className="has-text-danger">*</sup>Nombre:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field">
-                      <div className="control has-icons-left">
-                        <input className="input" type="text" name="nombre" placeholder="ejem.: Importadora de Lacteos El torito" required="required" onChange={e => this._handleInputChange(e) }/>
-                        <span className="icon is-left">
-                          <i className="mdi mdi-card-text-outline" />
-                        </span>
-                      </div>
+      <div className="hero is-light">
+        <section className="section">
+          <div className="container row">
+            <div className="columns is-centered">
+              <div className="column is-two-thirds">
+                <form onSubmit={(e) => this._handleFormSubmit(e)}>
+                  <h3 className="title is-3">¡Registr&aacute; tu negocio &oacute; Servicio!</h3>
+                  <p>Ayud&aacute; a tu comunidad a combatir el <b>COVID-19</b> haciendoles saber como contactarte y que tienes para ofrecer.</p>
+                  <hr/>
+                  <small className="has-text-danger">(*) campo requerido</small>
+                  <hr/>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label"><sup className="has-text-danger">*</sup>Nombre:</label>
                     </div>
-                  </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label"><sup className="has-text-danger">*</sup>Email:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field is-expanded">
-                      <div className="field has-addons">
-                        <div className="control has-icons-left is-expanded">
-                          <input className="input" type="text" name="email" placeholder="tuemail@tu.com" required="required" onChange={e => this._handleInputChange(e) } />
+                    <div className="field-body">
+                      <div className="field">
+                        <div className="control has-icons-left">
+                          <input className="input" type="text" name="nombre" placeholder="ejem.: Importadora de Lacteos El torito" required="required" onChange={e => this._handleInputChange(e) }/>
                           <span className="icon is-left">
-                            <i className="mdi mdi-email-edit-outline" />
+                            <i className="mdi mdi-card-text-outline" />
                           </span>
                         </div>
                       </div>
-                      <p className="help"><b>IMPORTANTE: Solo se permite un negocio por correo electr&oacute;nico</b></p>
                     </div>
                   </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label"><sup className="has-text-danger">*</sup>Tel&eacute;fono(s):</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field">
-                      <div className="control has-icons-left">
-                        <input className="input" type="text" name="telefono" placeholder="1234-5678 &oacute; 1234-5678/0987-6543 &oacute; *2222 " required="required" onChange={e => this._handleInputChange(e) }/>
-                        <span className="icon is-left">
-                          <i className="mdi mdi-phone"/>
-                        </span>
-                      </div>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label"><sup className="has-text-danger">*</sup>Email:</label>
                     </div>
-                  </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label">Website:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field">
-                      <div className="control has-icons-left">
-                        <input className="input" type="text" name="website" placeholder="www.tuwebsite.com" onChange={e => this._handleInputChange(e) }/>
-                        <span className="icon is-left">
-                          <i className="mdi mdi-phone"/>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label">WhatsApp:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field">
-                      <div className="control has-icons-left">
-                        <input className="input" type="text" name="whatsapp" placeholder="1234-5678 &oacute; 1234-5678/0987-6543" onChange={e => this._handleInputChange(e) }/>
-                        <span className="icon is-left">
-                          <i className="mdi mdi-whatsapp"/>
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label"><sup className="has-text-danger">*</sup>Ciudad:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field is-narrow">
-                      <div className="control">
-                        <div className="select is-fullwidth ">
-                          <select name="ciudad" defaultValue={internals.ciudad} onChange={e => this._handleInputChange(e) }>
-                            <option value="san pedro sula">San Pedro Sula</option>
-                            <option value="tegucigalpa">Tegucigalpa</option>
-                            <option value="la ceiba">La ceiba</option>
-                          </select>
+                    <div className="field-body">
+                      <div className="field is-expanded">
+                        <div className="field has-addons">
+                          <div className="control has-icons-left is-expanded">
+                            <input className="input" type="text" name="email" placeholder="tuemail@tu.com" required="required" onChange={e => this._handleInputChange(e) } />
+                            <span className="icon is-left">
+                              <i className="mdi mdi-email-edit-outline" />
+                            </span>
+                          </div>
                         </div>
+                        <p className="help"><b>IMPORTANTE: Solo se permite un negocio por correo electr&oacute;nico</b></p>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label"><sup className="has-text-danger">*</sup>Direcci&oacute;n:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field">
-                      <div className="control has-icons-left">
-                        <input className="input" type="text" name="direccion" placeholder="ejem.: Col. Alameda, Casa #x Calle 56" required="required" onChange={e => this._handleInputChange(e) }/>
-                        <span className="icon is-left">
-                          <i className="mdi mdi-map-marker"/>
-                        </span>
-                      </div>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label"><sup className="has-text-danger">*</sup>Tel&eacute;fono(s):</label>
                     </div>
-                  </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label"/>
-                  </div>
-                  <div className="field-body">
-                    <div className="field">
-                      <div className="control">
-                        <textarea className="textarea " name="direccionb" placeholder="Agrega mas detalle sobre tu direcci&oacute;n para facilitarle a los dem&aacute;s poder encontrarte" onChange={e => this._handleInputChange(e) }/>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label">A domicilio:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field is-narrow">
-                      <div className="control">
-                        <div className="select is-fullwidth ">
-                          <select name="domicilio" defaultValue={internals.domicilio} onChange={e => this._handleInputChange(e) }>
-                            <option value="si">Si</option>
-                            <option value="no">No</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr/>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label">Horario:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field">
-                      <label className="label">Dias:</label>
-                      <div className="control">
-                        <div className="select is-fullwidth is-small ">
-                          <select name="horario" defaultValue={internals.horario} onChange={e => this._handleInputChange(e) }>
-                            <option value="Lunes-Viernes">Lunes-Viernes</option>
-                            <option value="Lunes-Sabado">Lunes-S&aacute;bado</option>
-                            <option value="Lunes-Domingo">Lunes-Domingo</option>
-                            <option value="Martes-Domingo">Martes-Domingo</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="field is-narrow">
-                      <label className="label">De:</label>
-                      <div className="control">
-                        <TimePicker
-                          allowEmpty={false}
-                          showSecond={false}
-                          defaultValue={ moment().hour(8).minute(0) }
-                          onChange={(date) => this._handleGlobalTimeEventChange('startTime', date)}
-                          use12Hours={true}
-                          inputReadOnly
-                        />
-                      </div>
-                    </div>
-                    <div className="field is-narrow">
-                      <label className="label">Hasta:</label>
-                      <div className="control">
-                        <TimePicker
-                          allowEmpty={false}
-                          showSecond={false}
-                          defaultValue={ moment().hour(18).minute(0) }
-                          onChange={(date) => this._handleGlobalTimeEventChange('endTime', date)}
-                          use12Hours={true}
-                          inputReadOnly
-                        />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr/>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label"><sup className="has-text-danger">*</sup>Productos o Servicios:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field is-expanded">
-                      <div className="field has-addons">
-                        <div className="control has-icons-left is-expanded">
-                          <input className="input" name="productos" type="text" placeholder="ejem.: maiz, frescos, coca cola, frijoles" required="required" onChange={e => this._handleTagInputChange(e) }/>
+                    <div className="field-body">
+                      <div className="field">
+                        <div className="control has-icons-left">
+                          <input className="input" type="text" name="telefono" placeholder="1234-5678 &oacute; 1234-5678/0987-6543 &oacute; *2222 " required="required" onChange={e => this._handleInputChange(e) }/>
                           <span className="icon is-left">
-                            <i className="mdi mdi-cart" />
-                          </span>
-                        </div>
-                        <div className="control"><button className="button is-primary" onClick={ e => this._handleTagAdd(e) }><span className="icon"><i className="mdi mdi-plus" /></span><span>Agregar</span> </button></div>
-                      </div>
-                      <p className="help"><b>Agrega varios productos/servicios con los que cuentes o palabras que describan tu negocio. Ejemplos: Servicios Medicos, Minisuper, Frutas, bananos, pulperia, Nebulizaciones, Toma de la presion,san pedro sula, Carpinteria, Fotografia.   </b></p>
-                    </div>
-                  </div>
-                </div>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal" />
-                  <div className="field-body">
-                    <div className="field">
-                      <div className="buttons">
-                        {this.state.tags.length > 0 && this.state.tags.map( tag => <Tag key={tag} tag={tag} deleteTag={this._handleDeleteTag} />)}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <hr/>
-                <div className="field is-horizontal">
-                  <div className="field-label is-normal">
-                    <label className="label">Llave Secreta:</label>
-                  </div>
-                  <div className="field-body">
-                    <div className="field is-expanded">
-                      <div className="field has-addons">
-                        <div className="control has-icons-left is-expanded">
-                          <input className="input" readOnly type="text" value={internals.uniqueKey} />
-                          <span className="icon is-left">
-                            <i className="mdi mdi-key-outline" />
+                            <i className="mdi mdi-phone"/>
                           </span>
                         </div>
                       </div>
-                      <p className="help is-danger"><b>IMPORTANTE: Anotala en un lugar seguro y no la compartas con nadie. Esta llave es necesaria para que luego puedas editar el perfil de tu negocio.</b></p>
                     </div>
                   </div>
-                </div>
-                <hr/>
-                {/* Errors Here */}
-                <div className="tags">
-                  {this.state.errors.length > 0 && this.state.errors.map( (item, i) => <span key={`error-${i}`} className="tag is-danger">{item}</span>)}
-                </div>
-                {this.state.showSuccessModal === true && <div className="modal is-active">
-                  <div className="modal-background" />
-                  <div className="modal-content animated bounceIn">
-                    <div className="box">
-                      <h4 className="title is-4">¡Gracias por ayudar a tu comunidad!</h4>
-                      <hr/>
-                      <p>Es importante que juntos hagamos conciencia sobre nuestro papel en esta pandemia. Ayudate quedandote en casa y asi tambien ayudas a los demas. <b>Permitenos hasta 12 horas para revisar tus datos antes de plublicarlos.</b></p>
-                      <br/>
-                      <p className="has-text-centered">
-                        <button className="button is-success is-small" onClick={(e) => this._handleCloseSuccessModal(e)}>
-                          <span className="icon"><i className="mdi mdi-close"/></span>
-                          <b>Cerrar</b>
-                        </button>
-                      </p>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label">Website:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field">
+                        <div className="control has-icons-left">
+                          <input className="input" type="text" name="website" placeholder="www.tuwebsite.com" onChange={e => this._handleInputChange(e) }/>
+                          <span className="icon is-left">
+                            <i className="mdi mdi-phone"/>
+                          </span>
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>}
-                <div className="has-text-centered">
-                  {this.state.loading === true && <Spinner />}
-                  <button className="button is-primary is-medium" disabled={this.state.loading}><b>¡Registrame!</b></button>
-                </div>
-              </form>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label">WhatsApp:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field">
+                        <div className="control has-icons-left">
+                          <input className="input" type="text" name="whatsapp" placeholder="1234-5678 &oacute; 1234-5678/0987-6543" onChange={e => this._handleInputChange(e) }/>
+                          <span className="icon is-left">
+                            <i className="mdi mdi-whatsapp"/>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label"><sup className="has-text-danger">*</sup>Ciudad:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field is-narrow">
+                        <div className="control">
+                          <div className="select is-fullwidth ">
+                            <select name="ciudad" defaultValue={internals.ciudad} onChange={e => this._handleInputChange(e) }>
+                              <option value="san pedro sula">San Pedro Sula</option>
+                              <option value="tegucigalpa">Tegucigalpa</option>
+                              <option value="la ceiba">La ceiba</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label"><sup className="has-text-danger">*</sup>Direcci&oacute;n:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field">
+                        <div className="control has-icons-left">
+                          <input className="input" type="text" name="direccion" placeholder="ejem.: Col. Alameda, Casa #x Calle 56" required="required" onChange={e => this._handleInputChange(e) }/>
+                          <span className="icon is-left">
+                            <i className="mdi mdi-map-marker"/>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label"/>
+                    </div>
+                    <div className="field-body">
+                      <div className="field">
+                        <div className="control">
+                          <textarea className="textarea " name="direccionb" placeholder="Agrega mas detalle sobre tu direcci&oacute;n para facilitarle a los dem&aacute;s poder encontrarte" onChange={e => this._handleInputChange(e) }/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label">A domicilio:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field is-narrow">
+                        <div className="control">
+                          <div className="select is-fullwidth ">
+                            <select name="domicilio" defaultValue={internals.domicilio} onChange={e => this._handleInputChange(e) }>
+                              <option value="si">Si</option>
+                              <option value="no">No</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr/>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label">Horario:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field">
+                        <label className="label">Dias:</label>
+                        <div className="control">
+                          <div className="select is-fullwidth is-small ">
+                            <select name="horario" defaultValue={internals.horario} onChange={e => this._handleInputChange(e) }>
+                              <option value="Lunes-Viernes">Lunes-Viernes</option>
+                              <option value="Lunes-Sabado">Lunes-S&aacute;bado</option>
+                              <option value="Lunes-Domingo">Lunes-Domingo</option>
+                              <option value="Martes-Domingo">Martes-Domingo</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="field is-narrow">
+                        <label className="label">De:</label>
+                        <div className="control">
+                          <TimePicker
+                            allowEmpty={false}
+                            showSecond={false}
+                            defaultValue={ moment().hour(8).minute(0) }
+                            onChange={(date) => this._handleGlobalTimeEventChange('startTime', date)}
+                            use12Hours={true}
+                            inputReadOnly
+                          />
+                        </div>
+                      </div>
+                      <div className="field is-narrow">
+                        <label className="label">Hasta:</label>
+                        <div className="control">
+                          <TimePicker
+                            allowEmpty={false}
+                            showSecond={false}
+                            defaultValue={ moment().hour(18).minute(0) }
+                            onChange={(date) => this._handleGlobalTimeEventChange('endTime', date)}
+                            use12Hours={true}
+                            inputReadOnly
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr/>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label"><sup className="has-text-danger">*</sup>Productos o Servicios:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field is-expanded">
+                        <div className="field has-addons">
+                          <div className="control has-icons-left is-expanded">
+                            <input className="input" name="productos" type="text" placeholder="ejem.: maiz, frescos, coca cola, frijoles" required="required" onChange={e => this._handleTagInputChange(e) }/>
+                            <span className="icon is-left">
+                              <i className="mdi mdi-cart" />
+                            </span>
+                          </div>
+                          <div className="control"><button className="button is-primary" onClick={ e => this._handleTagAdd(e) }><span className="icon"><i className="mdi mdi-plus" /></span><span>Agregar</span> </button></div>
+                        </div>
+                        <p className="help"><b>Agrega varios productos/servicios con los que cuentes o palabras que describan tu negocio. Ejemplos: Servicios Medicos, Minisuper, Frutas, bananos, pulperia, Nebulizaciones, Toma de la presion,san pedro sula, Carpinteria, Fotografia.   </b></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal" />
+                    <div className="field-body">
+                      <div className="field">
+                        <div className="buttons">
+                          {this.state.tags.length > 0 && this.state.tags.map( tag => <Tag key={tag} tag={tag} deleteTag={this._handleDeleteTag} />)}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr/>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label">Llave Secreta:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field is-expanded">
+                        <div className="field has-addons">
+                          <div className="control has-icons-left is-expanded">
+                            <input className="input" readOnly type="text" value={internals.uniqueKey} />
+                            <span className="icon is-left">
+                              <i className="mdi mdi-key-outline" />
+                            </span>
+                          </div>
+                        </div>
+                        <p className="help is-danger"><b>IMPORTANTE: Anotala en un lugar seguro y no la compartas con nadie. Esta llave es necesaria para que luego puedas editar el perfil de tu negocio.</b></p>
+                      </div>
+                    </div>
+                  </div>
+                  <hr/>
+                  {/* Errors Here */}
+                  <div className="tags">
+                    {this.state.errors.length > 0 && this.state.errors.map( (item, i) => <span key={`error-${i}`} className="tag is-danger">{item}</span>)}
+                  </div>
+                  {this.state.showSuccessModal === true && <div className="modal is-active">
+                    <div className="modal-background" />
+                    <div className="modal-content animated bounceIn">
+                      <div className="box">
+                        <h4 className="title is-4">¡Gracias por ayudar a tu comunidad!</h4>
+                        <hr/>
+                        <p>Es importante que juntos hagamos conciencia sobre nuestro papel en esta pandemia. Ayudate quedandote en casa y asi tambien ayudas a los demas. <b>Permitenos hasta 12 horas para revisar tus datos antes de plublicarlos.</b></p>
+                        <br/>
+                        <p className="has-text-centered">
+                          <button className="button is-success is-small" onClick={(e) => this._handleCloseSuccessModal(e)}>
+                            <span className="icon"><i className="mdi mdi-close"/></span>
+                            <b>Cerrar</b>
+                          </button>
+                        </p>
+                      </div>
+                    </div>
+                  </div>}
+                  <div className="has-text-centered">
+                    {this.state.loading === true && <Spinner />}
+                    <button className="button is-primary is-medium" disabled={this.state.loading}><b>¡Registrame!</b></button>
+                  </div>
+                </form>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     );
   }
 }
