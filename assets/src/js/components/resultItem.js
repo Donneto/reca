@@ -57,6 +57,7 @@ const ResultItem = (props) => {
             <hr/>
             <p><span className="icon"><i className="mdi mdi-phone"/></span><b>Telefono:</b> {item.telefono}</p>
             <p><span className="icon"><i className="mdi mdi-whatsapp"/></span><b>WhatsApp:</b> {item.telefono}</p>
+            <p><span className="icon"><i className="mdi mdi-link-variant"/></span><b>Website:</b> {item.website}</p>
             <p><span className="icon"><i className="mdi mdi-map-marker"/></span><b>Direcci&oacute;n:</b> {item.direccion}</p>
             <p><span className="icon"><i className="mdi mdi-map-marker-alert"/></span><b>Indicaciones:</b> {item.direccionb}</p>
           </div>

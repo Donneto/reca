@@ -18,10 +18,10 @@ const internals = {
   domicilio: 'si',
   horario: 'Lunes-Viernes',
   productos: '',
-  website: '',
+  website: 'N/A',
   tags: [],
   activo: true,
-  revisado: true,
+  revisado: false,
   uniqueKey: short.generate(),
   horas: {
     startTime: '08:00',
@@ -359,7 +359,7 @@ class RegistrationForm extends React.Component {
                           allowEmpty={false}
                           showSecond={false}
                           defaultValue={ moment().hour(8).minute(0) }
-                          onChange={(date) => this.handleGlobalTimeEventChange('startTime', date)}
+                          onChange={(date) => this._handleGlobalTimeEventChange('startTime', date)}
                           use12Hours={true}
                           inputReadOnly
                         />
@@ -372,7 +372,7 @@ class RegistrationForm extends React.Component {
                           allowEmpty={false}
                           showSecond={false}
                           defaultValue={ moment().hour(18).minute(0) }
-                          onChange={(date) => this.handleGlobalTimeEventChange('endTime', date)}
+                          onChange={(date) => this._handleGlobalTimeEventChange('endTime', date)}
                           use12Hours={true}
                           inputReadOnly
                         />
