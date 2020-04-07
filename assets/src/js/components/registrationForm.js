@@ -20,7 +20,7 @@ const internals = {
   productos: '',
   website: 'N/A',
   tags: [],
-  activo: true,
+  activo: false,
   revisado: false,
   uniqueKey: short.generate(),
   horas: {
