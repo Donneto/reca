@@ -77,8 +77,8 @@ class RegistrationForm extends React.Component {
     // If not found add it
     if (found === -1) {
       tags.push(criteria);
-      this.setState({ tags });
       internals.tags = tags;
+      this.setState({ tags });
     }
   }
 
@@ -120,16 +120,12 @@ class RegistrationForm extends React.Component {
     e.preventDefault();
     this._handleLoading();
 
-    const productString = internals.productos;
     const errors = [];
     const fieldsToValidate = ['nombre', 'telefono', 'email', 'direccion'];
     const apiUrl = config.get('app.apiURL');
 
-    let products = [];
-
     try {
-      products = productString.split(',').map( product => product.toLowerCase().trim()).filter(item => item.length > 0 );
-      internals.tags = products;
+      internals.tags = internals.tags.map( product => product.toLowerCase().trim()).filter(item => item.length > 0 );
 
       this.setState({ errors });
 
@@ -146,8 +142,8 @@ class RegistrationForm extends React.Component {
       const checkSecretOnDB = await axios.post(`${apiUrl}/negocios/validate-uniquekey`, { uniqueKey: internals.uniqueKey });
       const checkEmailOnDB = await axios.post(`${apiUrl}/negocios/validate-email`, { email: internals.email });
 
-      if (!internals.productos.length) {
-        errors.push('productos no puede estar vacio.');
+      if (!internals.tags.length) {
+        errors.push('Debes agregar al menos 1 producto o servicio');
       }
 
       if (checkSecretOnDB.data.data.exists) {
@@ -166,6 +162,8 @@ class RegistrationForm extends React.Component {
 
         return;
       }
+
+      console.log(internals);
 
       await axios.post(`${apiUrl}/negocios`, internals);
 
