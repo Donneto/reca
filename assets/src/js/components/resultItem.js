@@ -37,20 +37,6 @@ const ResultItem = (props) => {
             <div className="tags">
               {item.tags.map((itemTag, tagindex) => <span key={`tag-${tagindex}`} className="tag is-warning is-light"><b>{itemTag}</b></span>  )}
             </div>
-            {/* <nav class="level">
-              <div class="level-item has-text-centered">
-                <div>
-                  <p class="heading">Tweets</p>
-                  <p class="title">3,456</p>
-                </div>
-              </div>
-              <div class="level-item has-text-centered">
-                <div>
-                  <p class="heading">Following</p>
-                  <p class="title">123</p>
-                </div>
-              </div>
-            </nav> */}
           </div>
           <div className="column">
             <p className="title is-4 has-text-grey-dark">Contacto:</p>

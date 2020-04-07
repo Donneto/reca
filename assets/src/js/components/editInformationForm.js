@@ -81,14 +81,14 @@ class EditInformationForm extends React.Component {
 
     if (found === -1) {
       tags.push(criteria);
-      this.setState({ tags });
       internals.data.tags = tags;
+      this.setState({ tags });
     }
   }
 
   _handleDeleteTag(e, tag) {
     e.preventDefault();
-    internals.tags = internals.data.tags.filter( currentTag => currentTag !== tag);
+    internals.data.tags = internals.data.tags.filter( currentTag => currentTag !== tag);
 
     this.setState({tags: internals.data.tags});
   }
