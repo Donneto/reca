@@ -297,7 +297,7 @@ class RegistrationForm extends React.Component {
                     <div className="field-body">
                       <div className="field">
                         <div className="control has-icons-left">
-                          <input className="input" type="text" name="direccion" placeholder="ejem.: Col. Alameda, Casa #x Calle 56" required="required" onChange={e => this._handleInputChange(e) }/>
+                          <input className="input" type="text" name="direccion" placeholder="ejem.: Col. Alameda, Casa #1 Calle 56" required="required" onChange={e => this._handleInputChange(e) }/>
                           <span className="icon is-left">
                             <i className="mdi mdi-map-marker"/>
                           </span>
@@ -390,7 +390,7 @@ class RegistrationForm extends React.Component {
                       <div className="field is-expanded">
                         <div className="field has-addons">
                           <div className="control has-icons-left is-expanded">
-                            <input className="input" name="productos" type="text" placeholder="ejem.: maiz, frescos, coca cola, frijoles" required="required" onChange={e => this._handleTagInputChange(e) }/>
+                            <input className="input" name="productos" type="text" placeholder="ejem.: Consulta Media, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper " required="required" onChange={e => this._handleTagInputChange(e) }/>
                             <span className="icon is-left">
                               <i className="mdi mdi-cart" />
                             </span>

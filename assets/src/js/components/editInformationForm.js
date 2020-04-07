@@ -7,25 +7,28 @@ import axios from 'axios';
 import Spinner from './spinner';
 
 const internals = {
-  _id: '',
-  nombre: '',
-  email: '',
-  telefono: '',
-  whatsapp: 'N/A',
-  ciudad: 'san pedro sula',
-  direccion: '',
-  direccionb: 'N/A',
-  domicilio: 'si',
-  horario: 'Lunes-Viernes',
-  productos: '',
-  website: '',
-  tags: [],
-  activo: true,
-  revisado: true,
-  uniqueKey: '',
-  horas: {
-    startTime: '08:00',
-    endTime: '18:00'
+  displayEditForm: false,
+  data: {
+    _id: '',
+    nombre: '',
+    email: '',
+    telefono: '',
+    whatsapp: 'N/A',
+    ciudad: 'san pedro sula',
+    direccion: '',
+    direccionb: 'N/A',
+    domicilio: 'si',
+    horario: 'Lunes-Viernes',
+    productos: '',
+    website: '',
+    tags: [],
+    activo: true,
+    revisado: true,
+    uniqueKey: '',
+    horas: {
+      startTime: '08:00',
+      endTime: '18:00'
+    }
   }
 };
 
@@ -35,7 +38,6 @@ class EditInformationForm extends React.Component {
     super(props);
 
     this.state = {
-      displayEditForm: false,
       errors: [],
       tags: [],
       loading: false,
@@ -54,6 +56,7 @@ class EditInformationForm extends React.Component {
     this._toggleLoading = this._toggleLoading.bind(this);
     this._handleCloseModal = this._handleCloseModal.bind(this);
     this._handleShowModal = this._handleShowModal.bind(this);
+    this._handleToggleForm = this._handleToggleForm.bind(this);
   }
 
   _handleTagInputChange(e) {
@@ -61,13 +64,13 @@ class EditInformationForm extends React.Component {
       this._handleTagAdd(e);
     }
 
-    internals[e.target.name] = e.target.value;
+    internals.data[e.target.name] = e.target.value;
   }
 
   _handleTagAdd(e) {
     e.preventDefault();
 
-    const criteria = internals.productos.trim().toLowerCase().split(',')[0];
+    const criteria = internals.data.productos.trim().toLowerCase().split(',')[0];
     const tags = this.state.tags;
     const found = tags.indexOf(criteria);
 
@@ -79,22 +82,22 @@ class EditInformationForm extends React.Component {
     if (found === -1) {
       tags.push(criteria);
       this.setState({ tags });
-      internals.tags = tags;
+      internals.data.tags = tags;
     }
   }
 
   _handleDeleteTag(e, tag) {
     e.preventDefault();
-    internals.tags = internals.tags.filter( currentTag => currentTag !== tag);
+    internals.tags = internals.data.tags.filter( currentTag => currentTag !== tag);
 
-    this.setState({tags: internals.tags});
+    this.setState({tags: internals.data.tags});
   }
 
   async _handleLogin(e) {
     e.preventDefault();
     this._toggleLoading();
     const apiURL = config.get('app.apiURL');
-    const { email, uniqueKey } = internals;
+    const { email, uniqueKey } = internals.data;
 
     try {
       const fetchInformation = await axios.post(`${apiURL}/negocios/fetch-information`, { email, uniqueKey });
@@ -107,14 +110,15 @@ class EditInformationForm extends React.Component {
 
       } else {
 
-        Object.keys(internals).forEach((property) => {
-          internals[property] = fetchInformation.data.data[property];
+        Object.keys(internals.data).forEach((property) => {
+          internals.data[property] = fetchInformation.data.data[property];
         });
 
-        internals.domicilio = internals.domicilio ? 'si' : 'no';
+        internals.data.domicilio = internals.data.domicilio ? 'si' : 'no';
 
         this._toggleLoading();
-        this.setState((prevState) => ({ displayEditForm: !prevState.displayEditForm, errors: [], tags: internals.tags }));
+        this._handleToggleForm();
+        this.setState({ errors: [], tags: internals.data.tags });
       }
     } catch(error) {
       console.log(error);
@@ -123,17 +127,17 @@ class EditInformationForm extends React.Component {
   }
 
   _handleGlobalTimeEventChange(hourType, value) {
-    const { horas } = internals;
+    const { horas } = internals.data;
     const hour = value.hour() < 10 ? `0${value.hour()}` : `${value.hour()}`;
     const minute = value.minute() < 10 ? `0${value.minute()}` : `${value.minute()}`;
 
     horas[hourType] = `${hour}:${minute}`;
 
-    internals.horas = horas;
+    internals.data.horas = horas;
   }
 
   _handleInputChange(e) {
-    internals[e.target.name] = e.target.value;
+    internals.data[e.target.name] = e.target.value;
   }
 
   _toggleLoading() {
@@ -150,6 +154,10 @@ class EditInformationForm extends React.Component {
     this.setState((prevState) => ({ showModal: !prevState.showModal }));
   }
 
+  _handleToggleForm() {
+    internals.displayEditForm = !internals.displayEditForm;
+  }
+
   async _handleUpdateSubmit(e) {
     e.preventDefault();
     this._toggleLoading();
@@ -163,20 +171,20 @@ class EditInformationForm extends React.Component {
       this.setState({ errors });
 
       validateFields.forEach((field) => {
-        const trimmedFieldValue = internals[field].trim();
+        const trimmedFieldValue = internals.data[field].trim();
 
         if (trimmedFieldValue.length === 0) {
           errors.push(`${field} no puede estar vacio.`);
         } else {
-          internals[field] = trimmedFieldValue;
+          internals.data[field] = trimmedFieldValue;
         }
       });
 
-      if (!internals.tags.length) {
+      if (!internals.data.tags.length) {
         errors.push('Productos no puede estar vacio.');
       }
 
-      internals.domicilio = internals.domicilio === 'si' ? true : false;
+      internals.data.domicilio = internals.data.domicilio === 'si' ? true : false;
 
       if (errors.length) {
 
@@ -186,7 +194,7 @@ class EditInformationForm extends React.Component {
         return;
       }
 
-      await axios.post(`${apiUrl}/negocios/update-information`, internals);
+      await axios.post(`${apiUrl}/negocios/update-information`, internals.data);
 
       this._toggleLoading();
       this._handleShowModal();
@@ -221,7 +229,7 @@ class EditInformationForm extends React.Component {
                 <div className="field-body">
                   <div className="field">
                     <div className="control has-icons-left">
-                      <input type="text" className="input" id="nombre" name="nombre" required placeholder="ejem.: Importadora de Lacteos El torito" onChange={ this._handleInputChange } defaultValue={ internals.nombre } />
+                      <input type="text" className="input" id="nombre" name="nombre" required placeholder="ejem.: Importadora de Lacteos El torito" onChange={ this._handleInputChange } defaultValue={ internals.data.nombre } />
                       <span className="icon is-left">
                         <i className="mdi mdi-card-text-outline" />
                       </span>
@@ -239,7 +247,7 @@ class EditInformationForm extends React.Component {
                 <div className="field-body">
                   <div className="field">
                     <div className="control has-icons-left">
-                      <input className="input" type="text" id="telefono" name="telefono" placeholder="1234-5678 &oacute; 1234-5678/0987-6543 &oacute; *2222" required onChange={ this._handleInputChange } defaultValue={ internals.telefono } />
+                      <input className="input" type="text" id="telefono" name="telefono" placeholder="1234-5678 &oacute; 1234-5678/0987-6543 &oacute; *2222" required onChange={ this._handleInputChange } defaultValue={ internals.data.telefono } />
                       <span className="icon is-left">
                         <i className="mdi mdi-phone"/>
                       </span>
@@ -249,12 +257,12 @@ class EditInformationForm extends React.Component {
               </div>
               <div className="field is-horizontal">
                 <div className="field-label is-normal">
-                  <label htmlFor="website" className="label">Sitio Web:</label>
+                  <label htmlFor="website" className="label">Website:</label>
                 </div>
                 <div className="field-body">
                   <div className="field">
                     <div className="control has-icons-left">
-                      <input className="input" type="text" id="website" name="website" placeholder="www.tusitioweb.com" onChange={ this._handleInputChange } defaultValue={ internals.website } />
+                      <input className="input" type="text" id="website" name="website" placeholder="www.tusitioweb.com" onChange={ this._handleInputChange } defaultValue={ internals.data.website } />
                       <span className="icon is-left">
                         <i className="mdi mdi-phone"/>
                       </span>
@@ -269,7 +277,7 @@ class EditInformationForm extends React.Component {
                 <div className="field-body">
                   <div className="field">
                     <div className="control has-icons-left">
-                      <input className="input" type="text" id="whatsapp" name="whatsapp" placeholder="1234-5678 &oacute; 1234-5678/0987-6543" onChange={ this._handleInputChange } defaultValue={ internals.whatsapp } />
+                      <input className="input" type="text" id="whatsapp" name="whatsapp" placeholder="1234-5678 &oacute; 1234-5678/0987-6543" onChange={ this._handleInputChange } defaultValue={ internals.data.whatsapp } />
                       <span className="icon is-left">
                         <i className="mdi mdi-whatsapp"/>
                       </span>
@@ -285,7 +293,7 @@ class EditInformationForm extends React.Component {
                   <div className="field is-narrow">
                     <div className="control">
                       <div className="select is-fullwidth ">
-                        <select id="ciudad" name="ciudad" onChange={ this._handleInputChange } defaultValue={ internals.ciudad } >
+                        <select id="ciudad" name="ciudad" onChange={ this._handleInputChange } defaultValue={ internals.data.ciudad } >
                           <option value="san pedro sula">San Pedro Sula</option>
                           <option value="tegucigalpa">Tegucigalpa</option>
                           <option value="la ceiba">La ceiba</option>
@@ -304,7 +312,7 @@ class EditInformationForm extends React.Component {
                 <div className="field-body">
                   <div className="field">
                     <div className="control has-icons-left">
-                      <input className="input" type="text" id="direccion" name="direccion" placeholder="ejem.: Col. Alameda, Casa #x Calle 56" required onChange={ this._handleInputChange } defaultValue={ internals.direccion } />
+                      <input className="input" type="text" id="direccion" name="direccion" placeholder="ejem.: Col. Alameda, Casa #1 Calle 56" required onChange={ this._handleInputChange } defaultValue={ internals.data.direccion } />
                       <span className="icon is-left">
                         <i className="mdi mdi-map-marker"/>
                       </span>
@@ -319,7 +327,7 @@ class EditInformationForm extends React.Component {
                 <div className="field-body">
                   <div className="field">
                     <div className="control">
-                      <textarea className="textarea" id="direccionb" name="direccionb" placeholder="Agrega mas detalle sobre tu direcci&oacute;n para facilitarle a los dem&aacute;s poder encontrarte" onChange={ this._handleInputChange } defaultValue={ internals.direccionb } />
+                      <textarea className="textarea" id="direccionb" name="direccionb" placeholder="Agrega mas detalle sobre tu direcci&oacute;n para facilitarle a los dem&aacute;s poder encontrarte" onChange={ this._handleInputChange } defaultValue={ internals.data.direccionb } />
                     </div>
                   </div>
                 </div>
@@ -332,7 +340,7 @@ class EditInformationForm extends React.Component {
                   <div className="field is-narrow">
                     <div className="control">
                       <div className="select is-fullwidth ">
-                        <select id="domicilio" name="domicilio" onChange={ this._handleInputChange } defaultValue={ internals.domicilio } >
+                        <select id="domicilio" name="domicilio" onChange={ this._handleInputChange } defaultValue={ internals.data.domicilio } >
                           <option value="si">Si</option>
                           <option value="no">No</option>
                         </select>
@@ -350,7 +358,7 @@ class EditInformationForm extends React.Component {
                     <label className="label">Dias:</label>
                     <div className="control">
                       <div className="select is-fullwidth is-small ">
-                        <select id="horario" name="horario" onChange={ this._handleInputChange } defaultValue={ internals.horario } >
+                        <select id="horario" name="horario" onChange={ this._handleInputChange } defaultValue={ internals.data.horario } >
                           <option value="Lunes-Viernes">Lunes-Viernes</option>
                           <option value="Lunes-Sabado">Lunes-S&aacute;bado</option>
                           <option value="Lunes-Domingo">Lunes-Domingo</option>
@@ -365,7 +373,7 @@ class EditInformationForm extends React.Component {
                       <TimePicker
                         allowEmpty={false}
                         showSecond={false}
-                        defaultValue={ moment().hour(internals.horas.startTime.split(':')[0]).minute(internals.horas.startTime.split(':')[1]) }
+                        defaultValue={ moment().hour(internals.data.horas.startTime.split(':')[0]).minute(internals.data.horas.startTime.split(':')[1]) }
                         onChange={(date) => this._handleGlobalTimeEventChange('startTime', date)}
                         use12Hours={true}
                         inputReadOnly
@@ -378,7 +386,7 @@ class EditInformationForm extends React.Component {
                       <TimePicker
                         allowEmpty={false}
                         showSecond={false}
-                        defaultValue={ moment().hour(internals.horas.endTime.split(':')[0]).minute(internals.horas.endTime.split(':')[1]) }
+                        defaultValue={ moment().hour(internals.data.horas.endTime.split(':')[0]).minute(internals.data.horas.endTime.split(':')[1]) }
                         onChange={(date) => this._handleGlobalTimeEventChange('endTime', date)}
                         use12Hours={true}
                         inputReadOnly
@@ -398,7 +406,7 @@ class EditInformationForm extends React.Component {
                   <div className="field is-expanded">
                     <div className="field has-addons">
                       <div className="control has-icons-left is-expanded">
-                        <input className="input" id="productos" name="productos" type="text" placeholder="ejem.: maiz, frescos, coca cola, frijoles" onChange={ (e) => this._handleTagInputChange(e) } />
+                        <input className="input" id="productos" name="productos" type="text" placeholder="ejem.: Consulta Media, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper " onChange={ (e) => this._handleTagInputChange(e) } />
                         <span className="icon is-left">
                           <i className="mdi mdi-cart" />
                         </span>
@@ -487,9 +495,11 @@ class EditInformationForm extends React.Component {
                       </div>
                     </div>
                   </div>
-                  <div className="has-text-centered">
-                    <button className="button is-primary is-medium" disabled={ this.state.loading }>
-                      <b>Acceder</b>
+                  <br/>
+                  <div className="buttons is-centered">
+                    <button className="button is-primary" disabled={ this.state.loading }>
+                      <span className="icon"><i className="mdi mdi-account-card-details"/></span>
+                      <span><b>Acceder</b></span>
                     </button>
                   </div>
                 </form>
@@ -507,8 +517,8 @@ class EditInformationForm extends React.Component {
       <div className="hero is-light">
         <section className="section">
           <div className="container">
-            { !this.state.displayEditForm && this._renderLoginForm() }
-            { this.state.displayEditForm && this._renderEditForm() }
+            { !internals.displayEditForm && this._renderLoginForm() }
+            {internals.displayEditForm && this._renderEditForm() }
             <div className="tags is-centered">
               { this.state.errors.length > 0 && this.state.errors.map( (error, index) => <span key={`error-${index}`} className="tag is-danger" >{error}</span>  ) }
             </div>
