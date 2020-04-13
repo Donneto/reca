@@ -32,7 +32,7 @@ class SearchBarHome extends React.Component {
 
     if (typeWriterEl) {
       const tw = new Typewriter(typeWriterEl, {
-        strings: ['Doctor', 'Frutas', 'A Domicilio', 'Nebulizaciones', 'Leche', 'Verduras', 'Electricidad'],
+        strings: ['Doctor', 'Frutas', 'Nebulizacion', 'A Domicilio', 'Leche', 'Verduras', 'Electricidad'],
         autoStart: true,
         loop: true,
         cursor: '_',

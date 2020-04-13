@@ -270,7 +270,7 @@ class EditInformationForm extends React.Component {
                     <div className="control has-icons-left">
                       <textarea className="textarea " name="description" placeholder="Describe con m&aacute;s detalle tu negocio/sevicio ( hasta 300 caracteres )" onChange={e => this._handleDescriptionChange(e) } defaultValue={ internals.data.description }/>
                     </div>
-                    <p className="help is-danger">Llevas {this.state.descriptionLength} caracteres</p>
+                    <p className="help is-danger">Llevas {this.state.descriptionLength} caracteres de 300 permitidos.</p>
                   </div>
                 </div>
               </div>

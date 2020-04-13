@@ -27,7 +27,7 @@ const About = () => {
                     <h4 className="title is-4 has-text-grey-dark">Acerca del Proyecto</h4>
                     <hr/>
                     <p>Considerando el momento tan dif&iacute;cil que se afronta a nivel mundial hemos tomado la iniciativa de poner a tu disposicion un servicio que te ayude a encontrar los productos que mas necesites sin poner en riesgo tu seguridad y la de tu familia.<br/><br/>
-                      <b>Sumate! Haz tu parte. <a href="https://twitter.com/hashtag/quedateEnCasa" target="_blank">#QuedateEnCasa</a></b>
+                      <b>Sumate! Haz tu parte. <a href="https://twitter.com/hashtag/QuedateEnCasa" target="_blank">#QuedateEnCasa</a></b>
                     </p>
                   </div>
                 </div>
@@ -51,8 +51,8 @@ const About = () => {
           <div className="columns is-centered">
             <div className="column is-one-third">
               <div className="buttons">
-                <a className="button is-info is-fullwidth is-light" target="_blank" href="https://www.google.com/covid19/"><span><b>Indices en Google (Ingl&eacute;s)</b></span> <span className="icon"><i className="mdi mdi-arrow-right-bold-circle" /></span></a>
-                <a className="button is-info is-fullwidth is-light" target="_blank" href="https://edition.cnn.com/interactive/2020/health/coronavirus-maps-and-cases/"><span><b>Indices Globales ( COVID-19 )</b></span> <span className="icon"><i className="mdi mdi-arrow-right-bold-circle" /></span></a>
+                <a className="button is-info is-fullwidth is-light" target="_blank" href="https://www.google.com/covid19/"><span><b>Datos en Google (Ingl&eacute;s)</b></span> <span className="icon"><i className="mdi mdi-arrow-right-bold-circle" /></span></a>
+                <a className="button is-info is-fullwidth is-light" target="_blank" href="https://who.sprinklr.com/"><span><b>Datos en la OMS (Ingl&eacute;s)</b></span> <span className="icon"><i className="mdi mdi-arrow-right-bold-circle" /></span></a>
                 <a className="button is-info is-fullwidth is-light" target="_blank" href="https://gisanddata.maps.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6"><span><b>Mapa Global</b></span> <span className="icon"><i className="mdi mdi-arrow-right-bold-circle" /></span></a>
               </div>
             </div>

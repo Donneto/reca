@@ -33,19 +33,19 @@ const ResultItem = (props) => {
               </b>
             </div>
             <p><span className="icon"><i className="mdi mdi-alarm"/></span><b>Horario:</b> {item.horario} <b>de</b> {item.horas.startTime} - {item.horas.endTime}</p>
+            <p><span className="icon"><i className="mdi mdi-phone"/></span><b>Telefono:</b> {item.telefono}</p>
             <hr/>
-            <div className="tags">
-              {item.tags.map((itemTag, tagindex) => <span key={`tag-${tagindex}`} className="tag is-warning is-light"><b>{itemTag}</b></span>  )}
-            </div>
+            <p className="is-italic has-text-grey-dark">{item.description}</p>
           </div>
           <div className="column">
-            <p className="title is-4 has-text-grey-dark">Contacto:</p>
-            <hr/>
-            <p><span className="icon"><i className="mdi mdi-phone"/></span><b>Telefono:</b> {item.telefono}</p>
             <p><span className="icon"><i className="mdi mdi-whatsapp"/></span><b>WhatsApp:</b> {item.telefono}</p>
             <p><span className="icon"><i className="mdi mdi-link-variant"/></span><b>Website:</b> {item.website}</p>
             <p><span className="icon"><i className="mdi mdi-map-marker"/></span><b>Direcci&oacute;n:</b> {item.direccion}</p>
             <p><span className="icon"><i className="mdi mdi-map-marker-alert"/></span><b>Indicaciones:</b> {item.direccionb}</p>
+            <hr/>
+            <div className="tags">
+              {item.tags.map((itemTag, tagindex) => <span key={`tag-${tagindex}`} className="tag is-warning is-light"><b>{itemTag}</b></span>  )}
+            </div>
           </div>
         </div>
       </div>

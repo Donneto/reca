@@ -40,10 +40,10 @@ class SearchResultsComponent extends React.Component {
     return (
       <section className="section search-results-items is-light">
         <div className="container ">
-          <p className="has-text-centered"><b>Servicios &oacute; Productos encontrados: {data.length}</b></p>
+          <p className="has-text-centered"><b>Servicios / Productos encontrados: {data.length}</b></p>
           {data.map( negocio => <Item key={negocio.objectID} item={negocio}/>)}
           {data.length === 0 && <div className="card">
-            <div className="card-content"><p className="title is-4 has-text-centered">No se encontraron Negocios &oacute; Servicios</p></div>
+            <div className="card-content"><p className="title is-4 has-text-centered">No se encontraron productos o servicios</p></div>
           </div> }
           <p className="has-text-centered"><img src="/images/team.svg" width="65"/></p>
         </div>
