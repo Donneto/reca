@@ -19,6 +19,7 @@ class SearchBarHome extends React.Component {
     this._handleSearch = this._handleSearch.bind(this);
     this._handleInputChange = this._handleInputChange.bind(this);
     this._handleCityChange = this._handleCityChange.bind(this);
+    this._handleEnterPressed = this._handleEnterPressed.bind(this);
   }
 
   componentDidMount() {
@@ -65,6 +66,14 @@ class SearchBarHome extends React.Component {
     internals.query.queryString = e.target.value;
   }
 
+  _handleEnterPressed(e) {
+
+    if (e.charCode === 13) {
+      console.log('here');
+      this._handleSearch(e);
+    }
+  }
+
   render() {
 
     return (
@@ -88,10 +97,11 @@ class SearchBarHome extends React.Component {
                   <div className="control is-expanded has-icons-left">
                     <input
                       defaultValue={internals.query.queryString}
-                      className="input  is-primary is-rounded"
+                      className="input is-primary is-rounded"
                       type="text"
-                      placeholder="Arroz, frijoles, platanos &oacute; bananos el roble, pollos satelite"
-                      onChange={ e => this._handleInputChange(e)}
+                      placeholder="Consulta Media, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper"
+                      onChange={ (e) => this._handleInputChange(e)}
+                      onKeyPress={(e) => this._handleEnterPressed(e)}
                     />
                     <span className="icon is-large is-left">
                       <i className="mdi mdi-card-search"/>

@@ -54,7 +54,7 @@ class Contact extends React.Component {
     return(
       <section className="section">
         <div className="container">
-          <h3 className="title is-3 has-text-centered has-text-grey-dark">¡Contactanos!</h3>
+          <h3 className="title is-3 has-text-centered has-text-grey-dark">¡Cont&aacute;ctanos!</h3>
           <p className="has-text-centered">Si te ha gustado el proyecto <br/>y tienes alguna sugerencia que nos ayude a mejorar <br/> o quieres reportar un problema, <b>¡Escr&iacute;benos!</b></p>
           <br/><br/>
           <div className="row">

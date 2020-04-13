@@ -11,6 +11,7 @@ const internals = {
   data: {
     _id: '',
     nombre: '',
+    description: '',
     email: '',
     telefono: '',
     whatsapp: 'N/A',
@@ -42,6 +43,7 @@ class EditInformationForm extends React.Component {
       tags: [],
       loading: false,
       showModal: false,
+      descriptionLength: 0
     };
 
     this._renderEditForm = this._renderEditForm.bind(this);
@@ -57,6 +59,7 @@ class EditInformationForm extends React.Component {
     this._handleCloseModal = this._handleCloseModal.bind(this);
     this._handleShowModal = this._handleShowModal.bind(this);
     this._handleToggleForm = this._handleToggleForm.bind(this);
+    this._handleDescriptionChange = this._handleDescriptionChange.bind(this);
   }
 
   _handleTagInputChange(e) {
@@ -67,6 +70,18 @@ class EditInformationForm extends React.Component {
     internals.data[e.target.name] = e.target.value;
   }
 
+  _handleDescriptionChange(e) {
+    const desc = e.target.value;
+
+    if (e.length > 300) {
+
+      return;
+    }
+
+    internals.data.description = desc;
+    this.setState({ descriptionLength: desc.length });
+  }
+
   _handleTagAdd(e) {
     e.preventDefault();
 
@@ -75,6 +90,11 @@ class EditInformationForm extends React.Component {
     const found = tags.indexOf(criteria);
 
     if (!criteria || !criteria.length) {
+
+      return;
+    }
+
+    if (tags.length >= 20) {
 
       return;
     }
@@ -111,14 +131,14 @@ class EditInformationForm extends React.Component {
       } else {
 
         Object.keys(internals.data).forEach((property) => {
-          internals.data[property] = fetchInformation.data.data[property];
+          internals.data[property] = fetchInformation.data.data[property] || '';
         });
 
         internals.data.domicilio = internals.data.domicilio ? 'si' : 'no';
 
         this._toggleLoading();
         this._handleToggleForm();
-        this.setState({ errors: [], tags: internals.data.tags });
+        this.setState({ errors: [], tags: internals.data.tags, descriptionLength: internals.data.description.length });
       }
     } catch(error) {
       console.log(error);
@@ -143,7 +163,6 @@ class EditInformationForm extends React.Component {
   _toggleLoading() {
     this.setState((prevState) => ({ loading: !prevState.loading }));
   }
-
 
   _handleCloseModal(e) {
     e.preventDefault();
@@ -179,6 +198,11 @@ class EditInformationForm extends React.Component {
           internals.data[field] = trimmedFieldValue;
         }
       });
+
+      // Check Description length
+      if (internals.data.description.length > 300) {
+        errors.push('La Descripcion no debe sobrepasar los 300 caracteres');
+      }
 
       if (!internals.data.tags.length) {
         errors.push('Productos no puede estar vacio.');
@@ -234,6 +258,19 @@ class EditInformationForm extends React.Component {
                         <i className="mdi mdi-card-text-outline" />
                       </span>
                     </div>
+                  </div>
+                </div>
+              </div>
+              <div className="field is-horizontal">
+                <div className="field-label is-normal">
+                  <label className="label">Descripci&oacute;n:</label>
+                </div>
+                <div className="field-body">
+                  <div className="field">
+                    <div className="control has-icons-left">
+                      <textarea className="textarea " name="description" placeholder="Describe con m&aacute;s detalle tu negocio/sevicio ( hasta 300 caracteres )" onChange={e => this._handleDescriptionChange(e) } defaultValue={ internals.data.description }/>
+                    </div>
+                    <p className="help is-danger">Llevas {this.state.descriptionLength} caracteres</p>
                   </div>
                 </div>
               </div>
@@ -454,9 +491,11 @@ class EditInformationForm extends React.Component {
           <div className="column is-half">
             <div className="card">
               <div className="card-content">
+                <p className="has-text-centered"><img src="/images/password.svg" width="65"/></p>
+                <br/>
+                <h3 className="title is-3 has-text-grey-dark has-text-centered">Edita a tu informaci&oacute;n</h3>
+                <hr/>
                 <form onSubmit={ this._handleLogin }>
-                  <p className="has-text-centered"><img src="/images/password.svg" width="65"/></p>
-                  <hr/>
                   <div className="field is-horizontal">
                     <div className="field-label is-normal">
                       <label className="label">

@@ -9,6 +9,7 @@ import Tag from './tag';
 
 const internals = {
   nombre: '',
+  description: '',
   email: '',
   telefono: '',
   whatsapp: 'N/A',
@@ -37,7 +38,8 @@ class RegistrationForm extends React.Component {
       errors: [],
       loading: false,
       showSuccessModal: false,
-      tags: []
+      tags: [],
+      descriptionLength: 0
     };
 
     this._handleGlobalTimeEventChange = this._handleGlobalTimeEventChange.bind(this);
@@ -48,6 +50,7 @@ class RegistrationForm extends React.Component {
     this._handleCloseSuccessModal = this._handleCloseSuccessModal.bind(this);
     this._handleDeleteTag = this._handleDeleteTag.bind(this);
     this._handleTagInputChange = this._handleTagInputChange.bind(this);
+    this._handleDescriptionChange = this._handleDescriptionChange.bind(this);
   }
 
   _handleInputChange(e) {
@@ -62,6 +65,18 @@ class RegistrationForm extends React.Component {
     internals[e.target.name] = e.target.value;
   }
 
+  _handleDescriptionChange(e) {
+    const desc = e.target.value;
+
+    if (e.length > 300) {
+
+      return;
+    }
+
+    internals.description = desc;
+    this.setState({ descriptionLength: desc.length });
+  }
+
   _handleTagAdd(e) {
     e.preventDefault();
 
@@ -70,6 +85,11 @@ class RegistrationForm extends React.Component {
     const found = tags.indexOf(criteria);
 
     if (!criteria || !criteria.length) {
+
+      return;
+    }
+
+    if (tags.length >= 20) {
 
       return;
     }
@@ -146,6 +166,11 @@ class RegistrationForm extends React.Component {
         errors.push('Debes agregar al menos 1 producto o servicio');
       }
 
+      // Check Description length
+      if (internals.description.length > 300) {
+        errors.push('La Descripcion no debe sobrepasar los 300 caracteres');
+      }
+
       if (checkSecretOnDB.data.data.exists) {
         errors.push('Esta llave ya esta siendo utilizada. Recargue la pagina para comenzar.');
       }
@@ -204,6 +229,19 @@ class RegistrationForm extends React.Component {
                             <i className="mdi mdi-card-text-outline" />
                           </span>
                         </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="field is-horizontal">
+                    <div className="field-label is-normal">
+                      <label className="label">Descripci&oacute;n:</label>
+                    </div>
+                    <div className="field-body">
+                      <div className="field">
+                        <div className="control has-icons-left">
+                          <textarea className="textarea " name="description" placeholder="Describe con m&aacute;s detalle tu negocio/sevicio ( hasta 300 caracteres )" onChange={e => this._handleDescriptionChange(e) }/>
+                        </div>
+                        <p className="help is-danger">Llevas {this.state.descriptionLength} caracteres</p>
                       </div>
                     </div>
                   </div>
@@ -388,14 +426,14 @@ class RegistrationForm extends React.Component {
                       <div className="field is-expanded">
                         <div className="field has-addons">
                           <div className="control has-icons-left is-expanded">
-                            <input className="input" name="productos" type="text" placeholder="ejem.: Consulta Media, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper " required="required" onChange={e => this._handleTagInputChange(e) }/>
+                            <input className="input" name="productos" type="text" placeholder="ejem.: Consulta Medica, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper" onChange={ (e) => this._handleTagInputChange(e) }/>
                             <span className="icon is-left">
                               <i className="mdi mdi-cart" />
                             </span>
                           </div>
                           <div className="control"><button className="button is-primary" onClick={ e => this._handleTagAdd(e) }><span className="icon"><i className="mdi mdi-plus" /></span><span>Agregar</span> </button></div>
                         </div>
-                        <p className="help"><b>Agrega varios productos/servicios con los que cuentes o palabras que describan tu negocio. Ejemplos: Servicios Medicos, Minisuper, Frutas, bananos, pulperia, Nebulizaciones, Toma de la presion,san pedro sula, Carpinteria, Fotografia.   </b></p>
+                        <p className="help"><b>Agrega varios productos/servicios (20 maximo) con los que cuentes o palabras que describan tu negocio. Ejemplos: Servicios Medicos, Minisuper, Frutas, bananos, pulperia, Nebulizaciones, Toma de la presion,san pedro sula, Carpinteria, Fotografia.   </b></p>
                       </div>
                     </div>
                   </div>
