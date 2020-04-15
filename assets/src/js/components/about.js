@@ -5,6 +5,8 @@ const About = () => {
     <div className="home-about hero is-primary is-bold">
       <section className="section">
         <div className="hero-body container is-fullhd">
+          <h2 className="is-2 title has-text-centered">Sistema Comunitario de Servicios y Abastos</h2>
+          <br/><br/>
           <div className="row has-text-centered">
             <div className="columns is-centered">
               <div className="column fadeInDown animated">

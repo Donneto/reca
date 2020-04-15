@@ -218,6 +218,8 @@ class EditInformationForm extends React.Component {
         return;
       }
 
+      internals.productos = internals.data.tags.join(' ');
+
       await axios.post(`${apiUrl}/negocios/update-information`, internals.data);
 
       this._toggleLoading();
@@ -229,7 +231,6 @@ class EditInformationForm extends React.Component {
 
       return;
     }
-
   }
 
   _renderEditForm() {
@@ -518,14 +519,14 @@ class EditInformationForm extends React.Component {
                   <div className="field is-horizontal">
                     <div className="field-label is-normal">
                       <label htmlFor="uniqueKey" className="label">
-                        <sup className="has-text-danger">*</sup>Llave Secreta:
+                        <sup className="has-text-danger">*</sup>Contrase&ntilde;a:
                       </label>
                     </div>
                     <div className="field-body">
                       <div className="field is-expanded">
                         <div className="field has-addons">
                           <div className="control has-icons-left is-expanded">
-                            <input className="input" id="uniqueKey" name="uniqueKey" placeholder="xxxxxxxxxxxxxxxxx" type="password" required onChange={ this._handleInputChange } />
+                            <input className="input" id="uniqueKey" name="uniqueKey" placeholder="Contrase&ntilde;a" type="password" required onChange={ this._handleInputChange } />
                             <span className="icon is-left">
                               <i className="mdi mdi-key-outline" />
                             </span>

@@ -99,7 +99,7 @@ class SearchBarHome extends React.Component {
                       defaultValue={internals.query.queryString}
                       className="input is-primary is-rounded"
                       type="text"
-                      placeholder="Consulta Media, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper"
+                      placeholder="Consulta M&eacute;dica, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper"
                       onChange={ (e) => this._handleInputChange(e)}
                       onKeyPress={(e) => this._handleEnterPressed(e)}
                     />

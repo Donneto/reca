@@ -8,6 +8,15 @@ const ResultItem = (props) => {
   const closeTime = new Date();
   const rightNow = new Date();
   const adomilicioText = item.domicilio ? 'Si' : 'No';
+  const website = () => {
+    let websiteLink = <a href={item.website}>{item.website}</a>;
+
+    if (item.website === 'N/A') {
+      websiteLink = item.website;
+    }
+
+    return websiteLink;
+  };
 
   let isOpen = 'Cerrado';
 
@@ -16,6 +25,7 @@ const ResultItem = (props) => {
   closeTime.setHours(endTime[0]);
   closeTime.setMinutes(endTime[1]);
   isOpen = rightNow > openTime && rightNow < closeTime ? 'Abierto' : isOpen;
+
 
   return(
     <div className="card">
@@ -33,13 +43,13 @@ const ResultItem = (props) => {
               </b>
             </div>
             <p><span className="icon"><i className="mdi mdi-alarm"/></span><b>Horario:</b> {item.horario} <b>de</b> {item.horas.startTime} - {item.horas.endTime}</p>
-            <p><span className="icon"><i className="mdi mdi-phone"/></span><b>Telefono:</b> {item.telefono}</p>
             <hr/>
-            <p className="is-italic has-text-grey-dark">{item.description}</p>
+            {item.description.trim().length > 0 && <small className=" has-text-grey-dark"><b>{item.description}</b></small>}
           </div>
           <div className="column">
+            <p><span className="icon"><i className="mdi mdi-phone"/></span><b>Telefono:</b> {item.telefono}</p>
             <p><span className="icon"><i className="mdi mdi-whatsapp"/></span><b>WhatsApp:</b> {item.telefono}</p>
-            <p><span className="icon"><i className="mdi mdi-link-variant"/></span><b>Website:</b> {item.website}</p>
+            <p><span className="icon"><i className="mdi mdi-link-variant"/></span><b>Website:</b> {website()}</p>
             <p><span className="icon"><i className="mdi mdi-map-marker"/></span><b>Direcci&oacute;n:</b> {item.direccion}</p>
             <p><span className="icon"><i className="mdi mdi-map-marker-alert"/></span><b>Indicaciones:</b> {item.direccionb}</p>
             <hr/>

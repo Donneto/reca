@@ -1,6 +1,6 @@
 import config from 'react-global-configuration';
 import React from 'react';
-import short from 'short-uuid';
+// import short from 'short-uuid';
 import TimePicker from 'rc-time-picker';
 import moment from 'moment';
 import Spinner from './spinner';
@@ -23,7 +23,7 @@ const internals = {
   tags: [],
   activo: false,
   revisado: false,
-  uniqueKey: short.generate(),
+  uniqueKey: '',
   horas: {
     startTime: '08:00',
     endTime: '18:00'
@@ -141,7 +141,7 @@ class RegistrationForm extends React.Component {
     this._handleLoading();
 
     const errors = [];
-    const fieldsToValidate = ['nombre', 'telefono', 'email', 'direccion'];
+    const fieldsToValidate = ['nombre', 'telefono', 'email', 'direccion', 'uniqueKey'];
     const apiUrl = config.get('app.apiURL');
 
     try {
@@ -152,14 +152,19 @@ class RegistrationForm extends React.Component {
       fieldsToValidate.forEach( item => {
         const trimmedValue = internals[item].trim();
 
+        let currentItem = item;
+
         if (trimmedValue.length === 0) {
-          errors.push(`${item} no puede estar vacio.`);
+          if (item === 'uniqueKey') {
+            currentItem = 'Contraseña';
+          }
+          errors.push(`${currentItem} no puede estar vacio.`);
         } else {
           internals[item] = trimmedValue;
         }
       });
 
-      const checkSecretOnDB = await axios.post(`${apiUrl}/negocios/validate-uniquekey`, { uniqueKey: internals.uniqueKey });
+      // const checkSecretOnDB = await axios.post(`${apiUrl}/negocios/validate-uniquekey`, { uniqueKey: internals.uniqueKey });
       const checkEmailOnDB = await axios.post(`${apiUrl}/negocios/validate-email`, { email: internals.email });
 
       if (!internals.tags.length) {
@@ -171,9 +176,9 @@ class RegistrationForm extends React.Component {
         errors.push('La Descripcion no debe sobrepasar los 300 caracteres');
       }
 
-      if (checkSecretOnDB.data.data.exists) {
-        errors.push('Esta llave ya esta siendo utilizada. Recargue la pagina para comenzar.');
-      }
+      // if (checkSecretOnDB.data.data.exists) {
+      //   errors.push('Esta llave ya esta siendo utilizada. Recargue la pagina para comenzar.');
+      // }
 
       if (checkEmailOnDB.data.data.exists) {
         errors.push('Esta correo electronico ya esta siendo utilizado.');
@@ -187,6 +192,8 @@ class RegistrationForm extends React.Component {
 
         return;
       }
+
+      internals.productos = internals.tags.join(' ');
 
       console.log(internals);
 
@@ -426,7 +433,7 @@ class RegistrationForm extends React.Component {
                       <div className="field is-expanded">
                         <div className="field has-addons">
                           <div className="control has-icons-left is-expanded">
-                            <input className="input" name="productos" type="text" placeholder="ejem.: Consulta Medica, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper" onChange={ (e) => this._handleTagInputChange(e) }/>
+                            <input className="input" name="productos" type="text" placeholder="ejem.: Consulta M&eacute;dica, Productos de Limpieza, Frijoles, Queso, Pizza, Tortillas, Minisuper" onChange={ (e) => this._handleTagInputChange(e) }/>
                             <span className="icon is-left">
                               <i className="mdi mdi-cart" />
                             </span>
@@ -450,19 +457,19 @@ class RegistrationForm extends React.Component {
                   <hr/>
                   <div className="field is-horizontal">
                     <div className="field-label is-normal">
-                      <label className="label">Llave Secreta:</label>
+                      <label className="label">Contrase&ntilde;a:</label>
                     </div>
                     <div className="field-body">
                       <div className="field is-expanded">
                         <div className="field has-addons">
                           <div className="control has-icons-left is-expanded">
-                            <input className="input" readOnly type="text" value={internals.uniqueKey} />
+                            <input className="input" type="password" name="uniqueKey" placeholder="Contrase&ntilde;a" onChange={ e => this._handleInputChange(e)} />
                             <span className="icon is-left">
                               <i className="mdi mdi-key-outline" />
                             </span>
                           </div>
                         </div>
-                        <p className="help is-danger"><b>IMPORTANTE: Anotala en un lugar seguro y no la compartas con nadie. Esta llave es necesaria para que luego puedas editar el perfil de tu negocio.</b></p>
+                        <p className="help is-danger"><b>IMPORTANTE: Ten en cuenta Mayusculas y minusculas. Esta contrase&ntilde;a se utilizar&aacute; para acceder al perfil de tu negocio mas adelante.</b></p>
                       </div>
                     </div>
                   </div>
