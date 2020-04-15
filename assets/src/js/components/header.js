@@ -9,7 +9,7 @@ const Header = () => {
       <div className="navbar-brand">
         <Link className="navbar-item" to="/">
           <img src="images/team.svg" width="55" />
-          <strong>SICSAHN</strong>
+          <strong>SICSA</strong>
         </Link>
       </div>
       <div className="navbar-end">

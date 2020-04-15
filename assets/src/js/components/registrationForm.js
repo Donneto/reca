@@ -219,8 +219,8 @@ class RegistrationForm extends React.Component {
             <div className="columns is-centered">
               <div className="column is-two-thirds">
                 <form onSubmit={(e) => this._handleFormSubmit(e)}>
-                  <h3 className="title is-3">¡Registr&aacute; tu negocio &oacute; Servicio!</h3>
-                  <p>Ayud&aacute; a tu comunidad a combatir el <b>COVID-19</b> haciendoles saber como contactarte y que tienes para ofrecer.</p>
+                  <h3 className="title is-3">¡Registr&aacute; tu negocio o Servicio!</h3>
+                  <p><b>¡Registrate!</b> Ayudanos a hacer crecer esta red de emprendedores y ponte al servicio de tu comunidad. Agrega los <b>productos o servicios</b> con los que cuentas, busca lo que necesites, contacta a otros emprendedores y comparte con tus amigos para que juntos hagamos frente a esta epidemia. <a href="https://twitter.com/hashtag/QuedateEnCasa" target="_blank"><b>#QuedateEnCasa</b></a></p>
                   <hr/>
                   <small className="has-text-danger">(*) campo requerido</small>
                   <hr/>
