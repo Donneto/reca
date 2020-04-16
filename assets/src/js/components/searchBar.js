@@ -57,6 +57,13 @@ class SearchBarHome extends React.Component {
     e.preventDefault();
     const { query } = internals;
 
+    if (query.queryString.trim() === '') {
+
+      return;
+    }
+
+    query.queryString = query.queryString.trim();
+
     _.setToLocalStorage('_app_d', query);
 
     window.location = '/resultados';

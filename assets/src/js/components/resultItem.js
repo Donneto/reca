@@ -32,7 +32,7 @@ const ResultItem = (props) => {
       <div className="card-content">
         <div className="columns">
           <div className="column is-half">
-            <p className="title is-3 has-text-grey-dark">{item.nombre} </p>
+            <p className="title is-4 is-uppercase  has-text-grey-dark">{item.nombre} </p>
             <div className="subtitle is-capitalized">
               <b>
                 <div className="tags">
@@ -44,7 +44,7 @@ const ResultItem = (props) => {
             </div>
             <p><span className="icon"><i className="mdi mdi-alarm"/></span><b>Horario:</b> {item.horario} <b>de</b> {item.horas.startTime} - {item.horas.endTime}</p>
             <hr/>
-            {item.description.trim().length > 0 && <small className=" has-text-grey-dark"><b>{item.description}</b></small>}
+            {item.description.trim().length > 0 && <small className="has-text-grey-dark">{item.description}</small>}
           </div>
           <div className="column">
             <p><span className="icon"><i className="mdi mdi-phone"/></span><b>Telefono:</b> {item.telefono}</p>
